@@ -1,0 +1,208 @@
+@font-face{font-family:LoveScript;src:url('assets/love-script.woff') format('woff');font-display:swap}
+@font-face{font-family:BirthdayHand;src:url('assets/birthday-hand.woff') format('woff');font-display:swap;font-weight:400}
+:root{--paper:#fbf8f3;--ink:#963f48;--red:#b63e38;--red-dark:#923632;--pink:#d58bab;--cream:#fff9ed;--hand:BirthdayHand,'Comic Sans MS','Chalkboard SE','Comic Sans','Trebuchet MS',sans-serif;--script:LoveScript,'Brush Script MT',cursive}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--paper)}
+body{color:var(--ink);font-family:var(--hand);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #744256;outline-offset:6px}
+button{color:inherit}
+[hidden]{display:none!important}
+.svg-definitions{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.screen{position:relative;width:100%;min-height:100svh;overflow:hidden}
+.screen.entering>.story-content{animation:page-in .6s ease both}
+.lock-screen{display:grid;grid-template-columns:57.5% 42.5%;background:var(--pink)}
+.lock-picture{position:relative;display:grid;place-items:center;min-height:100svh;margin-left:clamp(15px,2.4vw,34px);background:#f3f8ef}
+.lock-stars{position:absolute;inset:0;width:100%;height:100%;fill:#cf7292;stroke:#8c465b;stroke-width:1.5;overflow:visible}
+.lock-stars use:nth-child(even){fill:#e29daf;transform-box:fill-box;transform-origin:center;animation:star-pulse 4s ease-in-out infinite alternate}
+.kitten-frame{position:relative;width:min(66%,350px);aspect-ratio:320/470;transform:rotate(-3deg)}
+.kitten-frame>img{position:absolute;left:11.5%;top:10%;width:77%;height:80%;object-fit:cover;border-radius:50%;border:2px solid #acb49a;filter:saturate(.85)}
+.kitten-frame>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:#d6817b;stroke:#8f594d;stroke-width:1.4}
+.kitten-frame.framed-cover>img{left:0;top:0;width:100%;height:100%;object-fit:contain;border-radius:0;border:0;filter:none}
+.kitten-frame.framed-cover>svg{display:none}
+.passcode-panel{position:relative;display:flex;align-items:center;justify-content:center;min-height:100svh;padding:70px 32px}
+.passcode-content{width:min(100%,310px);text-align:center;transform:translateY(-8px)}
+.passcode-content h1{font-size:clamp(21px,2.5vw,33px);font-weight:700;margin:0 0 25px;color:#fff8ed;letter-spacing:.2px}
+.pin-display{display:flex;justify-content:center;gap:12px;margin-bottom:30px}
+.pin-box{display:grid;place-items:center;width:56px;height:59px;border:4px solid #fff7e9;border-radius:9px;color:#fff9ed;font-size:49px;font-weight:700;line-height:1;box-shadow:0 1px 0 #b7719426}
+.pin-box:nth-child(2){transform:rotate(-3deg)}
+.pin-box:nth-child(3){transform:rotate(2deg)}
+.pin-box.filled{animation:digit-pop .18s ease}
+.keypad{display:grid;grid-template-columns:repeat(3,64px);justify-content:center;gap:17px 24px}
+.keypad button{display:grid;place-items:center;width:64px;height:64px;padding:0 0 4px;border:2px solid #fdf7ea;background:#faf5e8;border-radius:50%;font-size:45px;font-weight:600;line-height:1;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:5px;color:#713335;box-shadow:0 2px 0 #874a5830;transition:transform .14s,background .14s}
+.keypad button:nth-child(3n+1){transform:rotate(-3deg)}
+.keypad button:nth-child(3n+2){transform:rotate(2deg)}
+.keypad button[data-key='*'],.keypad button[data-key='#']{font-size:32px;text-decoration:none;padding-top:5px}
+.keypad button:hover{background:#fffbf4;transform:translateY(-3px) rotate(-3deg)}
+.keypad button:active{transform:translateY(1px) scale(.94)}
+.hint-button{font-size:13px;color:#fff7eb;border:0;border-bottom:1px dotted #fff7eb80;background:transparent;padding:0 0 3px;margin-top:24px;opacity:.8}
+.hint-button:hover{opacity:1}
+.pin-hint{font-size:13px;color:#fff7eb;margin:9px 0 0;min-height:17px}
+.story-screen{display:grid;place-items:center;background:var(--paper);isolation:isolate;padding:36px 30px}
+.heart-background{position:absolute;width:min(80vw,890px);height:min(87svh,780px);top:50%;left:50%;transform:translate(-50%,-49%) rotate(-4deg);z-index:-1;opacity:.49;overflow:visible}
+.story-content{position:relative;width:min(100%,930px);display:flex;align-items:center;flex-direction:column;text-align:center}
+.arc-title{width:100%;margin:0;line-height:1;outline:none;flex-shrink:0}
+.arc-title>svg{display:block;width:100%;height:auto;overflow:visible}
+.arc-title text{font-family:var(--hand);font-size:56px;font-weight:700;letter-spacing:1px;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:1.7px;stroke-linejoin:round}
+.cat-art{width:100%;height:auto;overflow:visible}
+.gift-art{width:350px;max-width:65vw;margin:12px auto -12px}
+.question-title{font-size:clamp(23px,3.2vw,39px);font-weight:700;line-height:1.55;margin:0;min-height:3.1em;white-space:pre-line;letter-spacing:.2px;outline:none}
+.answer-buttons{display:flex;align-items:center;justify-content:center;gap:40px}
+.red-button{position:relative;border:2px solid var(--cream);border-radius:29px;background:var(--red);color:var(--cream);padding:3px 25px 8px;min-width:113px;min-height:57px;box-shadow:0 1px 0 #8b303226;font-size:32px;font-weight:700;line-height:1.1;transform:rotate(-5deg);transition:transform .18s,background .18s}
+.red-button:before{content:'';position:absolute;inset:3px;border:1px solid #ffedcf30;border-radius:24px;pointer-events:none}
+.red-button span{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+.red-button:nth-child(2){transform:rotate(-6deg)}
+.red-button:hover{background:var(--red-dark);transform:rotate(-3deg) scale(1.055)}
+.red-button:active{transform:rotate(-3deg) scale(.97)}
+.retry-button{font-size:23px;min-height:48px;padding:6px 29px 10px;min-width:190px;margin-top:-8px}
+.retry-button:after{content:'';position:absolute;left:10px;bottom:9px;width:9px;height:8px;border-left:3px solid #fff7e8;border-bottom:3px solid #fff7e8;border-radius:0 0 0 5px}
+.wrong-content,.no-content{max-width:780px}
+.wrong-content .arc-title,.no-content .arc-title{margin-bottom:-5px}
+.wrong-art{width:335px;max-width:65vw;margin-top:26px;margin-bottom:-5px}
+.no-art{width:330px;max-width:65vw;margin-top:8px;margin-bottom:1px}
+.birthday-content{width:min(90vw,900px)}
+.birthday-title text{font-size:57px}
+.birthday-title{margin-bottom:-60px;z-index:2}
+.birthday-drawing{position:relative;width:520px;max-width:75vw}
+.birthday-art{width:450px;max-width:100%}
+.art-button{display:block;padding:0;margin:0 auto;border:0;background:transparent;line-height:0;width:100%;max-width:450px;cursor:pointer}
+.art-button:focus-visible{outline-offset:-20px;border-radius:80px}
+.sparkles{position:absolute;inset:0;width:100%;height:100%;fill:#e0eee2;overflow:visible;pointer-events:none}
+.sparkles use,.collage-sparkles use{animation:star-pulse 2s ease-in-out infinite alternate}
+.sparkles use:nth-child(even),.collage-sparkles use:nth-child(even){animation-delay:1s}
+.gift-message{border:0;background:transparent;font-family:var(--script);font-size:clamp(39px,5.4vw,64px);font-weight:400;line-height:.95;color:#ad7181;margin:3px 0 0;padding:0 16px;transform:rotate(-4deg)}
+.gift-message:hover{color:#8d455f}
+.next-whisper{font-size:12px;color:#ad8b91;margin:13px 0 0;letter-spacing:1px}
+.little-party{position:absolute;left:clamp(12px,10vw,190px);bottom:30px;width:145px;transform:rotate(-8deg);pointer-events:none;opacity:.8}
+.love-content{width:min(90vw,850px)}
+.love-title{width:96%;margin-bottom:-7px;z-index:2}
+.love-title text{font-size:61px}
+.love-heart{width:min(90vw,1060px);height:95svh;opacity:.39}
+.photo-collage{position:relative;width:610px;max-width:83vw;aspect-ratio:560/465;margin-top:-10px}
+.reference-collage{display:block;width:100%;height:100%;object-fit:contain}
+.custom-collage{position:absolute;inset:0}
+.heart-photo{position:absolute;object-fit:cover;clip-path:url(#photo-heart)}
+.main-heart{width:72%;height:94%;left:15%;top:0}
+.main-primary,.main-secondary{position:absolute;height:100%;object-fit:cover;object-position:center 25%}
+.main-primary{left:0;top:0;width:70%}
+.main-secondary{right:0;top:18%;width:64%;height:88%;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
+.single-photo .main-primary{width:100%}
+.left-heart{width:37%;height:47%;left:1%;bottom:2%;transform:rotate(-19deg)}
+.right-heart{width:35%;height:45%;right:0;bottom:5%;transform:rotate(17deg)}
+.collage-sparkles{position:absolute;inset:0;width:100%;height:100%;fill:#e1f3e9;pointer-events:none;overflow:visible}
+.special-date{font-family:var(--script);font-size:42px;font-weight:400;line-height:1;color:#b395a3;margin:-1px 0 0;transform:rotate(-5deg)}
+.little-surprise-button{border:1px solid #ce9ba7;border-radius:30px;padding:10px 20px;background:#fbf4ee;color:#a45c70;margin-top:23px;font-size:16px;box-shadow:0 3px 0 #ead7da55;transition:transform .2s,background .2s}
+.little-surprise-button:hover{transform:translateY(-3px);background:#f5e7e9}
+.little-surprise-button span{display:inline-block;margin-left:7px}
+.letter-screen{padding-top:60px;padding-bottom:72px}
+.letter-content{width:min(100%,1000px)}
+.letter-title{font-size:clamp(28px,4vw,44px);margin:0 0 22px;outline:none;font-weight:700;line-height:1.3}
+.envelope-intro>p{font-size:18px;color:#b07d8e;margin:0 0 15px}
+.envelope-button{border:0;background:transparent;width:min(390px,78vw);padding:0;display:flex;align-items:center;flex-direction:column;color:#a4657a;transition:transform .25s}
+.envelope-button:hover{transform:translateY(-6px) rotate(-2deg)}
+.envelope-button>svg{display:block;width:100%;height:auto;filter:drop-shadow(0 12px 14px #b96a7d18)}
+.envelope-button>span{font-size:19px;margin-top:17px;letter-spacing:.5px}
+.letter-opened{width:100%;animation:page-in .65s ease both}
+.birthday-letter{width:min(620px,95%);margin:0 auto;background:#fffcf5;border:1px solid #e8cbd3;border-radius:4px 4px 28px 4px;padding:32px 38px 25px;box-shadow:0 12px 35px #a26a7c0d;transform:rotate(-1deg);position:relative}
+.birthday-letter:before{content:'♡';position:absolute;right:23px;top:15px;color:#d99caf;font-size:35px}
+.letter-eyebrow{font:9px/1.3 Arial,sans-serif;letter-spacing:2.3px;color:#b38495;margin:0 0 15px;text-align:left}
+.birthday-letter h2{font-size:clamp(24px,3vw,32px);font-weight:600;margin:0 0 17px;text-align:left;outline:none}
+.birthday-note{font-size:20px;line-height:1.65;white-space:pre-line;text-align:left;margin:0}
+.letter-signature{font-family:var(--script);font-size:36px;text-align:right;color:#ae7488;margin:18px 0 0}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:min(880px,95%);margin:35px auto 0}
+.memory-grid figure{margin:0;padding:8px 8px 12px;background:#fffdf7;box-shadow:0 5px 16px #93657818;transform:rotate(-3deg);border:1px solid #eadbdc}
+.memory-grid figure:nth-child(even){transform:rotate(3deg)}
+.memory-grid img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 22%;background:#f4e8ec}
+.memory-grid figcaption{font-size:12px;color:#af7e90;margin-top:10px}
+.back-to-hearts{border:0;border-bottom:1px dotted #be8c9e;background:transparent;font-size:15px;padding:2px 0 5px;margin-top:29px;color:#a66e82}
+.back-to-hearts:hover{color:#7b3e58}
+.love-scribbles{position:absolute;width:100%;height:80%;top:11%;fill:none;stroke:var(--ink);stroke-width:3;opacity:.9;pointer-events:none;z-index:-1}
+.utility-controls{position:fixed;right:max(15px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));display:flex;gap:5px;align-items:center;z-index:10}
+.utility-button{display:grid;place-items:center;background:#fbf8f3c9;backdrop-filter:blur(8px);border:1px solid #a36c7a1a;border-radius:50%;width:40px;height:40px;padding:10px;color:#986477;opacity:.73;transition:opacity .2s,transform .2s}
+.utility-button:hover{opacity:1;transform:translateY(-2px)}
+.utility-button svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mute-slash{display:none}
+.music-muted .mute-slash{display:block}
+.music-muted{opacity:.5}
+.floating-hearts{animation:float-hearts 2.5s ease-in-out infinite alternate;transform-origin:center}
+.gift-art .cat-left,.gift-art .cat-right{animation:cat-bob 2.6s ease-in-out infinite alternate;transform-origin:center}
+.gift-art .cat-right{animation-delay:.45s}
+.no-art .cat-right{animation:cat-bob 1.9s ease-in-out infinite alternate}
+.wrong-art .peek-cat{animation:peek 2.8s ease-in-out infinite alternate}
+.candle-flame{animation:flicker .65s ease-in-out infinite alternate;transform-origin:223px 247px}
+.wish-made .candle-flame{opacity:0;animation:none;transition:opacity .2s}
+.birthday-left{animation:party-sway 3s ease-in-out infinite alternate;transform-origin:165px 310px}
+.birthday-right{animation:party-sway 3s ease-in-out infinite alternate-reverse;transform-origin:285px 310px}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:6}
+.confetti-piece{position:absolute;top:-40px;width:8px;height:13px;background:var(--confetti-color);opacity:0;animation:confetti-fall var(--duration) var(--delay) linear both;border-radius:2px}
+.confetti-piece.heart-piece{font:22px/1 var(--hand);width:auto;height:auto;background:none;color:var(--confetti-color)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0}
+dialog{width:min(530px,calc(100% - 28px));max-height:calc(100svh - 40px);padding:28px;border:1px solid #dec5cc;border-radius:22px;background:#fffaf6;color:#754451;box-shadow:0 20px 100px #47202d30}
+dialog::backdrop{background:#422a3155;backdrop-filter:blur(5px)}
+.dialog-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.dialog-eyebrow{font-family:Arial,sans-serif;font-size:9px;letter-spacing:2px;color:#ba8795;margin:0 0 9px}
+dialog h2{font-size:29px;font-weight:600;line-height:1.2;margin:0}
+.close-dialog{border:0;background:#f3e6e9;border-radius:50%;width:34px;height:34px;flex-shrink:0;font:27px/1 Arial,sans-serif}
+.dialog-description{font-size:13px;color:#a47d89;margin:12px 0 25px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px 15px}
+.form-grid label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-family:Arial,sans-serif;color:#835767}
+.full-width{grid-column:1/-1}
+input,textarea{color:#71404f;background:#fffdfa;border:1px solid #e6cfd6;border-radius:8px;padding:10px 12px;width:100%;font-family:var(--hand);font-size:14px;min-width:0}
+textarea{resize:vertical;min-height:68px}
+.form-section-title{font:12px Arial,sans-serif;margin:23px 0 10px}
+.upload-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.photo-upload{display:flex;flex-direction:column;align-items:center;gap:7px;border:1px dashed #dcb8c2;border-radius:9px;padding:12px 4px;cursor:pointer;font:9px Arial,sans-serif;background:#f8edf0;text-align:center;position:relative;overflow:hidden}
+.photo-upload>span{font-size:26px;color:#bb7a8e}
+.photo-upload input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.photo-upload:focus-within{outline:3px solid #744256;outline-offset:2px}
+.photo-upload.has-image{background:#ecefe4;border-color:#9da98b}
+.local-note{font:11px/1.65 Arial,sans-serif;color:#a1838a;margin:17px 0}
+.customise-status{font:12px/1.5 Arial,sans-serif;margin:12px 0;color:#957245;min-height:0}
+.customise-status:empty{display:none}
+.form-actions{display:flex;flex-wrap:wrap;gap:9px}
+.save-button,.export-button{border:1px solid #a94861;border-radius:9px;padding:11px 14px;font-size:13px;background:#a94861;color:#fffaf3;flex:1;white-space:nowrap}
+.export-button{background:transparent;color:#a94861}
+.save-button:hover{background:#90364e}
+.export-button:hover{background:#f5e6eb}
+.reset-button{display:block;border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;font:11px Arial,sans-serif;color:#b08d97;margin:17px auto 0;padding:4px}
+.noscript-message{position:fixed;inset:0;display:grid;place-items:center;background:var(--paper);padding:24px;text-align:center;z-index:99}
+@keyframes page-in{from{opacity:0;transform:translateY(9px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes digit-pop{50%{transform:scale(1.15) rotate(-4deg)}}
+@keyframes star-pulse{from{opacity:.45}to{opacity:1}}
+@keyframes float-hearts{from{transform:translateY(2px)}to{transform:translateY(-8px)}}
+@keyframes cat-bob{from{transform:translateY(0)}to{transform:translateY(-4px) rotate(-.5deg)}}
+@keyframes peek{0%,35%{transform:translateX(-3px)}100%{transform:translateX(7px)}}
+@keyframes party-sway{from{transform:rotate(-1.7deg)}to{transform:rotate(1.7deg)}}
+@keyframes flicker{from{transform:scale(.94,1.04) rotate(-4deg)}to{transform:scale(1.05,.94) rotate(4deg)}}
+@keyframes confetti-fall{0%{opacity:0;transform:translate3d(0,-40px,0) rotate(0)}10%{opacity:.8}85%{opacity:.8}100%{opacity:0;transform:translate3d(var(--drift),105svh,0) rotate(var(--rotation))}}
+@media(min-width:1400px){.kitten-frame{width:375px}.passcode-content{width:340px}.keypad{grid-template-columns:repeat(3,72px);gap:20px 27px}.keypad button{width:72px;height:72px;font-size:48px}.pin-box{width:62px;height:65px}.story-content{transform:scale(1.06)}.screen.entering>.story-content{animation:page-in .6s ease both}}
+@media(max-width:700px){
+  .letter-screen{padding-top:45px;padding-bottom:65px}.letter-title{margin-bottom:25px}.envelope-intro>p{font-size:16px}.birthday-letter{padding:27px 23px 22px;width:96%}.birthday-note{font-size:18px;line-height:1.6}.letter-signature{font-size:32px}.memory-grid{grid-template-columns:repeat(2,1fr);gap:19px 17px;width:92%;margin-top:28px}.memory-grid img{aspect-ratio:4/5}.memory-grid figcaption{font-size:10px}.little-surprise-button{font-size:14px;margin-top:22px;padding:10px 16px}.upload-grid{grid-template-columns:repeat(3,1fr)}
+  .lock-screen{grid-template-columns:1fr;grid-template-rows:minmax(280px,47svh) minmax(380px,53svh)}
+  .lock-picture{min-height:0;margin-left:13px;margin-right:13px;border-radius:0 0 0 0}
+  .kitten-frame{width:auto;height:min(43svh,330px);max-width:62vw}
+  .passcode-panel{min-height:0;padding:24px 20px 48px;align-items:flex-start}
+  .passcode-content{transform:none;width:250px}
+  .passcode-content h1{font-size:23px;margin:0 0 15px}
+  .pin-display{gap:9px;margin-bottom:20px}.pin-box{width:42px;height:43px;border-width:3px;border-radius:7px;font-size:37px}
+  .keypad{grid-template-columns:repeat(3,48px);gap:12px 23px}.keypad button{width:48px;height:48px;font-size:34px;padding:0 0 4px;text-underline-offset:3px}.keypad button[data-key='*'],.keypad button[data-key='#']{font-size:25px}
+  .hint-button{font-size:11px;margin-top:17px}.pin-hint{font-size:11px}
+  .story-screen{padding:42px 12px 58px}
+  .heart-background{width:116vw;max-width:none;height:83svh;opacity:.4}
+  .story-content{width:100%}
+  .question-title{font-size:clamp(20px,5.5vw,30px);line-height:1.6;min-height:3.2em;margin:0 5px}
+  .gift-art{width:300px;max-width:80vw;margin:17px auto -7px}
+  .red-button{min-width:99px;min-height:51px;font-size:29px;padding:4px 22px 8px}.answer-buttons{gap:26px}
+  .arc-title{width:110%;max-width:760px}.arc-title text{font-size:56px;stroke-width:1}
+  .wrong-art,.no-art{width:290px;max-width:77vw}.wrong-art{margin-top:30px}.no-art{margin-top:25px}
+  .retry-button{font-size:21px;min-width:174px;min-height:45px;padding:6px 25px 10px}
+  .birthday-content{width:100%}.birthday-title{width:112%;margin-bottom:-20px}.birthday-title text{font-size:57px}
+  .birthday-drawing{max-width:100%;width:380px}.birthday-art{width:350px}.gift-message{font-size:48px;margin-top:9px}.next-whisper{font-size:10px;margin-top:14px}
+  .little-party{width:95px;left:7px;bottom:20px;opacity:.65}
+  .love-content{width:100%}.love-title{width:110%;margin-bottom:3px}.love-title text{font-size:61px}.photo-collage{width:98%;max-width:98vw;margin-top:-4px}.special-date{font-size:34px;margin-top:7px}.love-scribbles{width:180%;left:-40%;height:65%;top:17%;stroke-width:2.5}
+  .utility-controls{right:10px;bottom:max(10px,env(safe-area-inset-bottom));gap:4px}.utility-button{width:36px;height:36px;padding:9px}
+  dialog{padding:23px 20px;border-radius:18px}dialog h2{font-size:27px}.form-grid{gap:15px 10px}.upload-grid{gap:6px}.photo-upload{font-size:8px;padding:10px 3px}
+}
+@media(max-height:650px) and (min-width:701px){.kitten-frame{height:83svh;width:auto}.passcode-panel{padding:35px 24px}.passcode-content h1{font-size:24px;margin-bottom:16px}.pin-display{margin-bottom:20px}.pin-box{width:43px;height:46px;border-width:3px;font-size:39px}.keypad{grid-template-columns:repeat(3,48px);gap:12px 22px}.keypad button{width:48px;height:48px;font-size:34px}.hint-button{margin-top:16px}.question-title{font-size:28px}.gift-art{width:270px;margin:0 auto -10px}.red-button{font-size:25px;min-width:95px;min-height:45px;padding:3px 20px 7px}.answer-buttons{gap:28px}.arc-title{max-width:650px}.wrong-art,.no-art{width:245px;margin-top:0}.retry-button{font-size:19px;padding:5px 25px 8px;min-width:170px}.birthday-content{max-width:680px}.birthday-title{margin-bottom:-45px}.birthday-drawing{width:350px}.birthday-art{width:330px}.gift-message{font-size:43px;margin-top:0}.next-whisper{margin-top:7px;font-size:10px}.little-party{width:95px;bottom:15px}.love-content{max-width:650px}.love-title{max-width:560px}.photo-collage{width:430px;margin-top:-20px}.special-date{font-size:34px;margin-top:-10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.confetti-piece{display:none}.screen.entering>.story-content{animation:none}}

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d38baa">
+  <meta name="description" content="A little birthday surprise, made just for you. A secret code, a little wish, and a whole lot of love.">
+  <title>A little birthday surprise ♡</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- These are original, editable vector drawings recreating the video's cats. -->
+  <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <path id="tiny-heart" d="M0 5 C-9-2-6-10 0-5 C6-10 9-2 0 5Z"/>
+      <path id="star" d="m0-10 2.6 6.6 7.4.3-5.7 4.6 2 7.5L0 4.7-6.3 9l2-7.5L-10-3.1l7.4-.3Z"/>
+      <path id="sparkle" d="M0-13 3-3 13 0 3 3 0 13-3 3-13 0-3-3Z"/>
+      <clipPath id="photo-heart" clipPathUnits="objectBoundingBox">
+        <path d="M.5 .18C.28-.1 0 .02 0 .3 0 .57 .28 .8 .5 1 .72 .8 1 .57 1 .3 1 .02 .72-.1 .5 .18Z"/>
+      </clipPath>
+      
+      
+      
+      
+      
+    </defs>
+  </svg>
+
+  <main id="experience" aria-label="Your birthday surprise">
+    <section id="screen-lock" class="screen lock-screen" aria-labelledby="passcode-title">
+      <div class="lock-picture">
+        <svg id="lock-stars" class="lock-stars" viewBox="0 0 600 700" aria-hidden="true"></svg>
+        <div class="kitten-frame">
+          <img id="kitten-photo" src="assets/personal-cover.png" alt="Your personalised portrait with pink hearts">
+          <svg id="oval-hearts" viewBox="0 0 320 470" aria-hidden="true"></svg>
+        </div>
+      </div>
+      <div class="passcode-panel">
+        <div class="passcode-content">
+          <h1 id="passcode-title" tabindex="-1">Enter a passcode</h1>
+          <div id="pin-display" class="pin-display" role="status" aria-label="No digits entered">
+            <span class="pin-box" aria-hidden="true"></span><span class="pin-box" aria-hidden="true"></span><span class="pin-box" aria-hidden="true"></span><span class="pin-box" aria-hidden="true"></span>
+          </div>
+          <div id="keypad" class="keypad" role="group" aria-label="Four digit passcode keypad">
+            <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+            <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+            <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+            <button data-key="*" aria-label="Clear passcode">*</button><button data-key="0">0</button><button data-key="#" aria-label="Submit passcode">#</button>
+          </div>
+          <button id="hint-button" class="hint-button" aria-expanded="false" aria-controls="pin-hint">a little hint?</button>
+          <p id="pin-hint" class="pin-hint" hidden>Your secret four-digit code ♡</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-wrong" class="screen story-screen" hidden aria-labelledby="wrong-title">
+      <svg class="heart-background" viewBox="0 0 700 590" aria-hidden="true">
+        <path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/>
+      </svg>
+      <div class="story-content wrong-content">
+        <h1 id="wrong-title" class="arc-title" tabindex="-1" aria-label="Wrong passcode!">
+          <svg viewBox="0 0 760 145" aria-hidden="true"><defs><path id="arc-wrong" d="M70 136 Q380-58 690 136"/></defs><text><textPath href="#arc-wrong" startOffset="50%" text-anchor="middle" data-type="WRONG PASSCODE!">WRONG PASSCODE!</textPath></text></svg>
+        </h1>
+        <svg class="cat-art wrong-art" viewBox="0 0 400 330" role="img" aria-label="Two cats sulking after a wrong guess">
+        <g stroke="#53583f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <g class="peek-cat">
+            <path fill="#c7e4d2" d="m147 137-6-33 18 6q40-27 65 9l17 1-9 23q5 42-30 47l-3 73-66 2 11-70q-20-21 3-58Z"/>
+            <path d="m151 115 9 8" fill="none"/>
+            <ellipse cx="166" cy="147" rx="4" ry="5" fill="#4e543b" stroke="none"/>
+            <ellipse cx="199" cy="147" rx="4" ry="5" fill="#4e543b" stroke="none"/>
+            <path d="m179 156 4 3 4-3" fill="none" stroke-width="2.5"/>
+          </g>
+          <g class="sulky-cat">
+            <path fill="#daead0" d="m159 225-6-22 21 2q30-26 63-3l20-5-3 26q25 23 12 49c-14 30-70 30-91 8q-31-9-16-55Z"/>
+            <path d="m177 231 9-8 8 8m21 0 8-9 8 9m-28 11q-4 8 3 8" fill="none" stroke-width="3"/>
+            <path d="m166 238 4-3m66 3 4-3" stroke="#c3bd9e"/>
+          </g>
+          <path d="M133 107v179" fill="none" stroke-width="5"/>
+        </g>
+      </svg>
+        <button class="red-button retry-button" data-action="retry-pin"><span>TRY AGAIN</span></button>
+      </div>
+    </section>
+
+    <section id="screen-ask" class="screen story-screen" hidden aria-labelledby="ask-title">
+      <svg class="heart-background" viewBox="0 0 700 590" aria-hidden="true">
+        <path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/>
+      </svg>
+      <div class="story-content ask-content">
+        <h1 id="ask-title" class="handwritten question-title" tabindex="-1">I made something special for u<br>do u wanna see it?</h1>
+        <svg class="cat-art gift-art" viewBox="0 0 400 330" role="img" aria-label="Two little cats peeking out of a gift box">
+        <g stroke="#55533c" stroke-width="4.3" stroke-linecap="round" stroke-linejoin="round">
+          <g class="floating-hearts" fill="#ca766c" stroke="#ad5b56" stroke-width="1.2">
+            <use href="#tiny-heart" transform="translate(160 34) scale(1.4) rotate(-20)"/>
+            <use href="#tiny-heart" transform="translate(202 17) scale(1.1)"/>
+            <use href="#tiny-heart" transform="translate(248 40) scale(1.25) rotate(20)"/>
+          </g>
+          <g class="cat-left">
+            <path fill="#a5bab0" d="M83 126 78 85Q80 76 104 87C124 61 176 59 199 87L216 82Q224 81 221 100L216 145 215 206Q211 225 181 226L117 226Q87 220 84 200Z"/>
+            <path d="m86 88 10 15m108-11-7 12" stroke="#84988d" stroke-width="3"/>
+            <path d="m115 99-8 10m12-3-5 7" stroke="#81968a" stroke-width="3"/>
+            <ellipse cx="127" cy="151" rx="5" ry="7" fill="#3d443a" stroke="none"/>
+            <ellipse cx="177" cy="151" rx="5" ry="7" fill="#3d443a" stroke="none"/>
+            <path d="M148 154q-2 18 4 18t5-18Z" fill="#d5ad77" stroke-width="2.5"/>
+            <ellipse cx="110" cy="169" rx="10" ry="5" fill="#dcaaa0" stroke="none"/>
+            <ellipse cx="190" cy="169" rx="10" ry="5" fill="#dcaaa0" stroke="none"/>
+          </g>
+          <g class="cat-right">
+            <path fill="#d5eeea" d="M208 122 206 80Q208 73 228 81C255 55 302 62 320 86L337 79Q344 78 340 98L335 125 334 195Q331 220 304 222L245 224Q212 221 211 200Z"/>
+            <path d="m215 83 10 13m108-8-9 12" stroke="#b9d2c9" stroke-width="3"/>
+            <ellipse cx="247" cy="146" rx="5" ry="7" fill="#3d443a" stroke="none"/>
+            <ellipse cx="300" cy="146" rx="5" ry="7" fill="#3d443a" stroke="none"/>
+            <path d="M269 151q-2 18 5 18t5-18Z" fill="#d5ad77" stroke-width="2.5"/>
+            <ellipse cx="232" cy="163" rx="10" ry="5" fill="#e3c1b5" stroke="none"/>
+            <ellipse cx="314" cy="163" rx="10" ry="5" fill="#e3c1b5" stroke="none"/>
+          </g>
+          <path d="m81 224 253-6-12 92-222 3Z" fill="#e5d893"/>
+          <path d="m81 224 253-6 12 36-245 16-20-46Z" fill="#efe6a8"/>
+          <path d="m103 270 217-14-5 46-208 3Z" fill="#ded08a" stroke="none" opacity=".5"/>
+          <path d="m91 226-25 38 11-29-14 4" fill="none"/>
+          <g fill="#a5bab0" stroke-width="3.3"><ellipse cx="126" cy="224" rx="11" ry="8" transform="rotate(-15 126 224)"/><ellipse cx="149" cy="222" rx="10" ry="8" transform="rotate(-15 149 222)"/></g>
+          <g fill="#d5eeea" stroke-width="3.3"><ellipse cx="264" cy="221" rx="11" ry="8" transform="rotate(-15 264 221)"/><ellipse cx="287" cy="220" rx="10" ry="8" transform="rotate(-15 287 220)"/></g>
+          <path d="m200 277 2 8 8-2-6 6 5 7-9-3-6 5 1-9-7-4 9-1Z" fill="#c17d75" stroke="none" opacity=".7"/>
+        </g>
+      </svg>
+        <div class="answer-buttons"><button id="yes-button" class="red-button"><span>YES</span></button><button id="no-button" class="red-button"><span>NO</span></button></div>
+      </div>
+    </section>
+
+    <section id="screen-no" class="screen story-screen" hidden aria-labelledby="no-title">
+      <svg class="heart-background" viewBox="0 0 700 590" aria-hidden="true">
+        <path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/>
+      </svg>
+      <div class="story-content no-content">
+        <h1 id="no-title" class="arc-title" tabindex="-1" aria-label="Why did u click no?">
+          <svg viewBox="0 0 760 145" aria-hidden="true"><defs><path id="arc-no" d="M65 137 Q380-55 695 137"/></defs><text><textPath href="#arc-no" startOffset="50%" text-anchor="middle" data-type="Why did u click no?">Why did u click no?</textPath></text></svg>
+        </h1>
+        <svg class="cat-art no-art" viewBox="0 0 400 330" role="img" aria-label="One little cat asking the other why">
+        <g stroke="#52513c" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+          <g class="cat-left">
+            <path fill="#d4ece5" d="m96 132-11-41 27 6C136 65 193 65 217 92l24-5-11 46c9 21 3 55-10 73l7 96-115 1-1-59c-23 19-43 10-44 1s16-14 36-18c-21-22-24-65-7-95Z"/>
+            <path d="m96 98 13 16m111-16-10 13" stroke="#b8cfc2"/>
+            <ellipse cx="131" cy="158" rx="5" ry="7" fill="#3f493c" stroke="none"/>
+            <ellipse cx="188" cy="158" rx="5" ry="7" fill="#3f493c" stroke="none"/>
+            <path d="m153 166 5 4 5-4" fill="none" stroke-width="3"/>
+            <path d="m121 176 2-5m7 6 2-5m65 4 2-5m7 6 2-5" stroke="#dbb6aa" stroke-width="3"/>
+          </g>
+          <g class="cat-right">
+            <path fill="#a6b4a0" d="m222 116 1-40 25 11C275 68 309 77 325 99l26-4-11 44q9 51-23 70l7 91-103 2-2-79q-27-10-21-24t26-3q-16-28-2-80Z"/>
+            <path d="m232 86 8 15m102 3-12 7" stroke="#8b9e86"/>
+            <ellipse cx="252" cy="151" rx="4.5" ry="6" fill="#404333" stroke="none"/>
+            <ellipse cx="301" cy="151" rx="4.5" ry="6" fill="#404333" stroke="none"/>
+            <path d="M271 161q-4 22 5 22t6-22Z" fill="#d5ac72" stroke-width="2.5"/>
+            <ellipse cx="236" cy="170" rx="8" ry="4" fill="#d3ac94" stroke="none"/>
+            <path d="M227 216q31-8 43 8" fill="none"/>
+          </g>
+          <path d="m251 42 7-11m13 20 13-4" fill="none" stroke="#b97a6d" stroke-width="4"/>
+        </g>
+      </svg>
+        <button id="retry-question" class="red-button retry-button"><span>TRY AGAIN</span></button>
+      </div>
+    </section>
+
+    <section id="screen-birthday" class="screen story-screen" hidden aria-labelledby="birthday-title">
+      <svg class="heart-background" viewBox="0 0 700 590" aria-hidden="true">
+        <path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/>
+      </svg>
+      <div class="story-content birthday-content">
+        <h1 id="birthday-title" class="arc-title birthday-title" tabindex="-1" aria-label="Happy birthday nippu ji">
+          <svg viewBox="0 0 900 190" aria-hidden="true"><defs><path id="arc-birthday" d="M53 178 Q450-105 847 178"/></defs><text><textPath id="birthday-heading" href="#arc-birthday" startOffset="50%" text-anchor="middle">HAPPY BIRTHDAY nippu ji</textPath></text></svg>
+        </h1>
+        <div class="birthday-drawing">
+          <svg class="sparkles" viewBox="0 0 600 450" aria-hidden="true"><use href="#sparkle" x="86" y="150"/><use href="#sparkle" x="111" y="172" transform="scale(.8)"/><use href="#sparkle" x="530" y="93"/><use href="#sparkle" x="492" y="112" transform="scale(1.1)"/></svg>
+          <button id="cake-button" class="art-button" aria-label="Make a wish and blow out the candle"><svg class="cat-art birthday-art" viewBox="0 0 450 390" role="img" aria-label="Two cats celebrating your birthday with a little cake">
+        <g stroke="#53543d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+          <g class="birthday-left">
+            <path fill="#aab79b" d="m91 187-25-23 27-13q7-26 35-29l17-14 45 1 20 24q30 7 31 39l4 53-17 28 9 52q-2 21-25 24l-24-3-12-32-22 1-2 33-36-1q-17-1-13-16l10-40c-23-20-37-56-22-89Z"/>
+            <path d="m99 157 14 13" fill="none" stroke="#8f9f87"/>
+            <ellipse cx="135" cy="204" rx="5" ry="7" fill="#454733" stroke="none"/>
+            <ellipse cx="193" cy="204" rx="5" ry="7" fill="#454733" stroke="none"/>
+            <path d="M160 210q-2 19 5 19t5-19Z" fill="#d8b269" stroke-width="2.7"/>
+            <ellipse cx="116" cy="223" rx="10" ry="6" fill="#d7b087" stroke="none"/>
+            <ellipse cx="212" cy="223" rx="10" ry="6" fill="#d7b087" stroke="none"/>
+            <path d="m109 274-6 13q-3 13 15 10l16-8" fill="#aab79b"/>
+            <path d="m119 127 22-97 62 84Z" fill="#b4dfd6"/>
+            <path d="m145 35 20 84" stroke="#87beb4" stroke-width="2.5"/>
+            <path d="M141 30q-30-8-14-18 9-4 15 15-2-28 11-22 14 8-12 25Z" fill="#e2cb75" stroke-width="3"/>
+            <g fill="#e7db6d" stroke-width="3"><circle cx="119" cy="126" r="10"/><circle cx="138" cy="124" r="11"/><circle cx="159" cy="121" r="11"/><circle cx="181" cy="116" r="11"/><circle cx="201" cy="110" r="10"/></g>
+          </g>
+          <g class="birthday-right">
+            <path fill="#d5eee5" d="m246 157-4-26 24 7q29-22 59-1l25 2-13 22q13 35-4 68l5 46q29-16 35-2 4 17-31 27l-13 26-29 1-8-25-23 1-6 25-28-2-2-52q-25-18-30-42-7-50 23-76Z"/>
+            <path d="m250 139 12 12m72-6-11 9" fill="none" stroke="#b5cec0" stroke-width="3"/>
+            <ellipse cx="264" cy="195" rx="4.8" ry="6.5" fill="#454733" stroke="none"/>
+            <ellipse cx="313" cy="195" rx="4.8" ry="6.5" fill="#454733" stroke="none"/>
+            <path d="m283 203 5 4 5-4" fill="none" stroke-width="2.5"/>
+            <ellipse cx="249" cy="213" rx="8" ry="4.5" fill="#dcb7a1" stroke="none"/>
+            <path d="m245 251-20 13q-12 9-2 17t28-8" fill="#d5eee5"/>
+          </g>
+          <ellipse cx="222" cy="350" rx="71" ry="16" fill="#e8e7c4"/>
+          <path d="M165 304q0-17 57-18 56 0 57 18v33q-13 18-57 18-41 0-57-16Z" fill="#d5c383"/>
+          <path d="M165 305q3-19 29-17 8-11 23-3 18-12 28-1 30-2 34 18v16q-6 15-20 3-7 15-22 2-11 14-22 1-12 13-23-3-15 8-27-2Z" fill="#f4ecd0" stroke-width="3.4"/>
+          <path d="M219 291v-45h9v45" fill="#dbe7bc" stroke-width="3"/>
+          <path d="m222 251 4-2m-4 12 4-2m-4 12 4-2" stroke="#8fa67a" stroke-width="2"/>
+          <g class="candle-flame"><path d="M223 247c-20-9-7-24 0-32 1 11 17 22 0 32Z" fill="#d99254" stroke="#b47b44" stroke-width="2"/><path d="M223 241q-9-5 0-15 8 11 0 15" fill="#f6d683" stroke="none"/></g>
+        </g>
+      </svg></button>
+        </div>
+        <button id="gift-next" class="gift-message" aria-label="Open one more surprise"><span id="gift-line">I am ur gift</span></button>
+        <p class="next-whisper">tap for one more surprise ♡</p>
+      </div>
+      <svg class="little-party" viewBox="0 0 450 390" aria-hidden="true">
+        <g stroke="#53543d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+          <g class="birthday-left">
+            <path fill="#aab79b" d="m91 187-25-23 27-13q7-26 35-29l17-14 45 1 20 24q30 7 31 39l4 53-17 28 9 52q-2 21-25 24l-24-3-12-32-22 1-2 33-36-1q-17-1-13-16l10-40c-23-20-37-56-22-89Z"/>
+            <path d="m99 157 14 13" fill="none" stroke="#8f9f87"/>
+            <ellipse cx="135" cy="204" rx="5" ry="7" fill="#454733" stroke="none"/>
+            <ellipse cx="193" cy="204" rx="5" ry="7" fill="#454733" stroke="none"/>
+            <path d="M160 210q-2 19 5 19t5-19Z" fill="#d8b269" stroke-width="2.7"/>
+            <ellipse cx="116" cy="223" rx="10" ry="6" fill="#d7b087" stroke="none"/>
+            <ellipse cx="212" cy="223" rx="10" ry="6" fill="#d7b087" stroke="none"/>
+            <path d="m109 274-6 13q-3 13 15 10l16-8" fill="#aab79b"/>
+            <path d="m119 127 22-97 62 84Z" fill="#b4dfd6"/>
+            <path d="m145 35 20 84" stroke="#87beb4" stroke-width="2.5"/>
+            <path d="M141 30q-30-8-14-18 9-4 15 15-2-28 11-22 14 8-12 25Z" fill="#e2cb75" stroke-width="3"/>
+            <g fill="#e7db6d" stroke-width="3"><circle cx="119" cy="126" r="10"/><circle cx="138" cy="124" r="11"/><circle cx="159" cy="121" r="11"/><circle cx="181" cy="116" r="11"/><circle cx="201" cy="110" r="10"/></g>
+          </g>
+          <g class="birthday-right">
+            <path fill="#d5eee5" d="m246 157-4-26 24 7q29-22 59-1l25 2-13 22q13 35-4 68l5 46q29-16 35-2 4 17-31 27l-13 26-29 1-8-25-23 1-6 25-28-2-2-52q-25-18-30-42-7-50 23-76Z"/>
+            <path d="m250 139 12 12m72-6-11 9" fill="none" stroke="#b5cec0" stroke-width="3"/>
+            <ellipse cx="264" cy="195" rx="4.8" ry="6.5" fill="#454733" stroke="none"/>
+            <ellipse cx="313" cy="195" rx="4.8" ry="6.5" fill="#454733" stroke="none"/>
+            <path d="m283 203 5 4 5-4" fill="none" stroke-width="2.5"/>
+            <ellipse cx="249" cy="213" rx="8" ry="4.5" fill="#dcb7a1" stroke="none"/>
+            <path d="m245 251-20 13q-12 9-2 17t28-8" fill="#d5eee5"/>
+          </g>
+          <ellipse cx="222" cy="350" rx="71" ry="16" fill="#e8e7c4"/>
+          <path d="M165 304q0-17 57-18 56 0 57 18v33q-13 18-57 18-41 0-57-16Z" fill="#d5c383"/>
+          <path d="M165 305q3-19 29-17 8-11 23-3 18-12 28-1 30-2 34 18v16q-6 15-20 3-7 15-22 2-11 14-22 1-12 13-23-3-15 8-27-2Z" fill="#f4ecd0" stroke-width="3.4"/>
+          <path d="M219 291v-45h9v45" fill="#dbe7bc" stroke-width="3"/>
+          <path d="m222 251 4-2m-4 12 4-2m-4 12 4-2" stroke="#8fa67a" stroke-width="2"/>
+          <g class="candle-flame"><path d="M223 247c-20-9-7-24 0-32 1 11 17 22 0 32Z" fill="#d99254" stroke="#b47b44" stroke-width="2"/><path d="M223 241q-9-5 0-15 8 11 0 15" fill="#f6d683" stroke="none"/></g>
+        </g>
+      </svg>
+    </section>
+
+    <section id="screen-love" class="screen story-screen" hidden aria-labelledby="love-title">
+      <svg class="heart-background love-heart" viewBox="0 0 700 590" aria-hidden="true">
+        <path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/>
+      </svg>
+      <svg class="love-scribbles" viewBox="0 0 1200 650" aria-hidden="true"><path d="M8 410c70-5 102-80 137-57s-69 88-29 96 74-82 100-54-16 46 12 29 47-2 82-38M890 303c61-69 112-73 100-45s-63 74-24 81 75-83 98-61-9 51 21 28 61-15 107-59"/></svg>
+      <div class="story-content love-content">
+        <h1 id="love-title" class="arc-title love-title" tabindex="-1" aria-label="Will you be mine?">
+          <svg viewBox="0 0 760 150" aria-hidden="true"><defs><path id="arc-love" d="M75 136 Q380-55 685 136"/></defs><text><textPath id="love-heading" href="#arc-love" startOffset="50%" text-anchor="middle">Will you be mine?</textPath></text></svg>
+        </h1>
+        <div id="photo-collage" class="photo-collage">
+          <img id="reference-collage" class="reference-collage" src="assets/personal-collage.png" alt="Your four photographs arranged in three hearts">
+          <div id="custom-collage" class="custom-collage" hidden>
+            <div id="main-heart" class="heart-photo main-heart">
+              <img id="main-photo" class="main-primary" src="assets/portrait-main.png" alt="Your first portrait">
+              <img id="second-photo" class="main-secondary" src="assets/portrait-second.png" alt="Your second portrait">
+            </div>
+            <img id="left-photo" class="heart-photo left-heart" src="assets/portrait-left.png" alt="Your third portrait">
+            <img id="right-photo" class="heart-photo right-heart" src="assets/portrait-right.png" alt="Your fourth portrait">
+          </div>
+          <svg class="collage-sparkles" viewBox="0 0 600 500" aria-hidden="true"><use href="#sparkle" x="80" y="54"/><use href="#sparkle" x="59" y="90"/><use href="#sparkle" x="520" y="57"/><use href="#sparkle" x="545" y="89"/></svg>
+        </div>
+        <p id="special-date" class="special-date">20.10.2003</p>
+        <button id="letter-next" class="little-surprise-button">one more birthday surprise ♡ <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <section id="screen-letter" class="screen story-screen letter-screen" hidden aria-labelledby="letter-title">
+      <svg class="heart-background" viewBox="0 0 700 590" aria-hidden="true"><path d="M350 125C225-58 22 25 29 217 32 365 226 500 350 582 474 500 668 365 671 217 678 25 475-58 350 125Z" fill="#e6dbe0"/></svg>
+      <div class="story-content letter-content">
+        <h1 id="letter-title" class="letter-title" tabindex="-1">A little birthday letter ♡</h1>
+        <div id="envelope-intro" class="envelope-intro">
+          <p>Something sweet, just for you.</p>
+          <button id="open-letter" class="envelope-button" aria-label="Open your birthday letter" aria-expanded="false" aria-controls="letter-opened">
+            <svg viewBox="0 0 420 300" role="img" aria-label="A pink envelope sealed with a heart">
+              <path d="M30 88 210 12 390 88v185H30Z" fill="#e8b0ba" stroke="#ac6374" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M49 91h322v164H49Z" fill="#fff9ef" stroke="#d6a1aa" stroke-width="2"/>
+              <path d="m30 88 180 110L390 88v185H30Z" fill="#eac0c8" stroke="#ac6374" stroke-width="3" stroke-linejoin="round"/>
+              <path d="m30 273 133-111m227 111L257 162" fill="none" stroke="#bd7c8b" stroke-width="2"/>
+              <path d="M210 216c-54-31-43-70-15-67q10 1 15 12 5-11 15-12c28-3 39 36-15 67Z" fill="#ae4c60" stroke="#934253" stroke-width="2"/>
+              <path d="m75 45 4-14m12 20 13-3m237-12 7 13m-20-9-10 4" fill="none" stroke="#c68d99" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <span>tap to open ♡</span>
+          </button>
+        </div>
+        <div id="letter-opened" class="letter-opened" hidden>
+          <article class="birthday-letter">
+            <p class="letter-eyebrow">A WISH, JUST FOR YOU</p>
+            <h2 id="letter-greeting" tabindex="-1">Happy birthday, nippu ji!</h2>
+            <p id="birthday-note" class="birthday-note"></p>
+            <p id="letter-signature" class="letter-signature">With love ♡</p>
+          </article>
+          <div class="memory-grid" aria-label="Your birthday photo memories">
+            <figure><img id="memory-main" src="assets/portrait-main.png" alt="Your first birthday memory" loading="lazy"><figcaption>a little memory · 01</figcaption></figure>
+            <figure><img id="memory-second" src="assets/portrait-second.png" alt="Your second birthday memory" loading="lazy"><figcaption>a little memory · 02</figcaption></figure>
+            <figure><img id="memory-left" src="assets/portrait-left.png" alt="Your third birthday memory" loading="lazy"><figcaption>a little memory · 03</figcaption></figure>
+            <figure><img id="memory-right" src="assets/portrait-right.png" alt="Your fourth birthday memory" loading="lazy"><figcaption>a little memory · 04</figcaption></figure>
+          </div>
+        </div>
+        <button id="back-to-hearts" class="back-to-hearts">← back to our hearts</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="confetti" class="confetti" aria-hidden="true"></div>
+  <nav class="utility-controls" aria-label="Page controls">
+    <button id="replay-button" class="utility-button" title="Start again" aria-label="Start again" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 .7 7M4 4v6h6"/></svg></button>
+    <button id="music-button" class="utility-button" title="Turn music off" aria-label="Turn music off" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 7l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2"/><ellipse cx="17" cy="16" rx="3" ry="2"/><path class="mute-slash" d="m3 3 18 18"/></svg></button>
+    <button id="edit-button" class="utility-button" title="Personalise this surprise" aria-label="Personalise this surprise"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-5-5L4 14Z"/></svg></button>
+  </nav>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  <audio id="birthday-audio" src="assets/birthday-music.mp3" loop preload="none"></audio>
+
+  <dialog id="personalise-dialog" aria-labelledby="personalise-title">
+    <form id="personalise-form">
+      <div class="dialog-top"><div><p class="dialog-eyebrow">MADE WITH LOVE</p><h2 id="personalise-title">Make it yours ♡</h2></div><button type="button" id="close-dialog" class="close-dialog" aria-label="Close">×</button></div>
+      <p class="dialog-description">A little surprise for your favourite person.</p>
+      <div class="form-grid">
+        <label>Their name<input name="recipient" maxlength="22" required placeholder="nippu ji"></label>
+        <label>Four digit passcode<input name="passcode" inputmode="numeric" pattern="[0-9]{4}" minlength="4" maxlength="4" required autocomplete="off"></label>
+        <label class="full-width">Your special date<input name="specialDate" maxlength="30" placeholder="20.10.2003"></label>
+        <label class="full-width">Your little question<textarea name="question" rows="2" maxlength="160"></textarea></label>
+        <label class="full-width">Birthday message<input name="giftLine" maxlength="70" placeholder="I am ur gift"></label>
+        <label class="full-width">Photo page heading<input name="loveHeading" maxlength="36" placeholder="Will you be mine?"></label>
+        <label class="full-width">Your birthday letter<textarea name="birthdayNote" rows="4" maxlength="1200" placeholder="Write a birthday wish..."></textarea></label>
+        <label class="full-width">Letter signature<input name="signature" maxlength="60" placeholder="With love ♡"></label>
+      </div>
+      <p class="form-section-title">Your photos</p>
+      <div class="upload-grid">
+        <label class="photo-upload"><span>♡</span>Cover photo<input type="file" name="kittenPhoto" accept="image/*"></label>
+        <label class="photo-upload"><span>♡</span>Main heart · 1<input type="file" name="mainPhoto" accept="image/*"></label>
+        <label class="photo-upload"><span>♡</span>Main heart · 2<input type="file" name="secondPhoto" accept="image/*"></label>
+        <label class="photo-upload"><span>♡</span>Left heart<input type="file" name="leftPhoto" accept="image/*"></label>
+        <label class="photo-upload"><span>♡</span>Right heart<input type="file" name="rightPhoto" accept="image/*"></label>
+      </div>
+      <p id="customise-status" class="customise-status" role="status"></p>
+      <p class="local-note">Changes are saved on this device. Download your personalised page to keep or share your version.</p>
+      <div class="form-actions"><button type="submit" class="save-button">Save my surprise ♡</button><button type="button" id="export-button" class="export-button">Download my page ↓</button></div>
+      <button type="button" id="reset-button" class="reset-button">Restore this birthday version</button>
+    </form>
+  </dialog>
+  <noscript><div class="noscript-message">Please enable JavaScript to open your birthday surprise.</div></noscript>
+</body>
+</html>
